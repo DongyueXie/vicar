@@ -229,8 +229,8 @@
 #' graphics::legend("bottomright", legend = c("MOUTHWASH", "ASH"), col = c(4, 3),
 #'                  lty = c(1, 2))
 #'
-mouthwash <- function(Y, X, k = NULL, cov_of_interest = ncol(X),
-                      include_intercept = TRUE, limmashrink = TRUE,
+mouthwash <- function(Y, X, k = NULL, cov_of_interest = ncol(X),S=NULL,
+                      include_intercept = FALSE, limmashrink = FALSE,
                       fa_func = pca_naive, fa_args = list(),
                       likelihood = c("normal", "t"),
                       mixing_dist = c("normal", "uniform", "+uniform", "sym_uniform"),
@@ -301,6 +301,7 @@ mouthwash <- function(Y, X, k = NULL, cov_of_interest = ncol(X),
       rotate_out <- rotate_model(Y = Y, X = X, k = k,
                                  cov_of_interest = cov_of_interest,
                                  include_intercept = include_intercept,
+                                 S=S,
                                  limmashrink = limmashrink, fa_func = fa_func,
                                  fa_args = fa_args, do_factor = TRUE))
     if (verbose)
